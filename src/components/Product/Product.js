@@ -1,5 +1,5 @@
 import styles from './Product.module.scss';
-import { useState } from 'react';
+import { useState,useMemo } from 'react';
 import ProductImg from '../ProductImg/ProductImg';
 import ProductForm from '../ProductForm/ProductForm';
 const Product = props => {
@@ -14,9 +14,16 @@ const Product = props => {
     console.log(`Size: ${currentSize}`);
     console.log(`Color: ${currentColor}`);
   }
-  const getPrice = props=>{
-    return props.sizes.find(({name})=> name === currentSize).additionalPrice + props.basePrice;
-  }
+
+
+  const getPrice = useMemo(props =>{
+   return props=>{
+      // console.log('reapeta');
+      return props.sizes.find(({name})=> name === currentSize).additionalPrice + props.basePrice;
+    }
+  },[currentSize]);
+
+
   return (
     <article className={styles.product}>
       <div className={styles.imageContainer}>
