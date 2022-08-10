@@ -25,6 +25,7 @@ const productsData = [
       { name: 'XL', additionalPrice: 4 }
     ]
   }
+
 ];
 
 export default productsData;
